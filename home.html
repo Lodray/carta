@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor Interactiva</title>
+    <style>
+        body {
+            background: #ffe6f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            perspective: 1000px;
+        }
+
+        .carta-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 1s;
+            transform: rotateY(180deg);
+        }
+
+        .carta-container.abierta {
+            transform: rotateY(0deg);
+        }
+
+        .carta {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .frente {
+            background: #ff6699;
+            transform: rotateY(180deg);
+        }
+
+        .interior {
+            background: #fff;
+            transform: rotateY(0deg);
+            padding: 40px;
+            flex-direction: column;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .sello {
+            width: 100px;
+            height: 100px;
+            background: #ff3366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 17px;
+            transform: rotate(0deg);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .mensaje {
+            font-size: 28px;
+            text-align: center;
+            line-height: 1.4;
+            color: #5a3d3d;
+            margin-top: 40px;
+        }
+
+        .corazon {
+            font-size: 40px;
+            margin-top: 20px;
+            animation: latido 1.2s infinite;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="carta-container">
+        <div class="carta frente">
+            <div class="sello">Mi Bonita</div>
+        </div>
+        <div class="carta interior">
+            <div class="mensaje">
+                "Cuanto más tiempo estoy contigo<br>
+                más te amo!"
+                deseo hacerte feliz, todo lo que dios me permita
+                <br><br>
+                De verdad, con todo mi corazon y mente, te amo
+                <br><br>
+                "Psdt: No dejes que nos coma el diablo Amor"
+                <div class="corazon">❤️</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const carta = document.querySelector('.carta-container');
+        
+        // Para dispositivos móviles
+        carta.addEventListener('click', function() {
+            this.classList.toggle('abierta');
+        });
+
+        // Para hover en desktop
+        carta.addEventListener('mouseleave', function() {
+            if(window.innerWidth > 768) {
+                this.classList.remove('abierta');
+            }
+        });
+    </script>
+</body>
+</html>
